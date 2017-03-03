@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const config = require('./config/config');
+const knox = require('knox');
 
 const app = express();
 
@@ -12,6 +13,12 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('host', config.host);
 const port = process.env.PORT || 3000;
+
+const knoxClient = knox.createClient({
+  key: config.S3AccessKey,
+  secret: config.S3Secret,
+  bucket: config.S3Bucket
+});
 
 require('./routes/routes')(express, app);
 
