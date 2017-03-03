@@ -1,0 +1,20 @@
+{
+  "name": "photo-grid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-rallycoding": "^3.2.0"
+  },
+  "dependencies": {
+    "express": "^4.15.0",
+    "hogan-express": "^0.5.2",
+    "socket.io": "^1.7.3"
+  }
+}
