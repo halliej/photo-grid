@@ -1,6 +1,11 @@
 'use strict';
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
+const os = require('os');
+const formidable = require('formidable');
+const gm = require('gm');
+
 const config = require('./config/config');
 const knox = require('knox');
 
@@ -20,7 +25,7 @@ const knoxClient = knox.createClient({
   bucket: config.S3Bucket
 });
 
-require('./routes/routes')(express, app);
+require('./routes/routes')(express, app, formidable, fs, os, gm, knoxClient);
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
