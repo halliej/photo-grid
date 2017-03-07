@@ -73,5 +73,17 @@ module.exports = (express, app, formidable, fs, os, gm, knoxClient, mongoose, io
     });
   });
 
+  router.get('/getimages', (req, res) => {
+    singleImageModel.find({}, null, { sort: { votes: -1 } }, (err, result) => {
+      res.send(JSON.stringify(result));
+    });
+  });
+
+  router.get('/voteup/:id', (req, res) => {
+    singleImageModel.findByIdAndUpdate(req.params.id, { $inc: { votes: 1 } }, (err, result) => {
+      res.status(200).send({ votes: result.votes });
+    });
+  });
+
   app.use('/', router);
 };
